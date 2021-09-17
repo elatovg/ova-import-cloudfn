@@ -2,10 +2,9 @@
 """
 Simple CloudFn to Import OVA as a machine image
 """
-import base64
+from datetime import datetime
 from google.cloud.devtools import cloudbuild_v1
 import google.auth
-from datetime import datetime
 
 
 def import_ova_with_cloudbuild(gcs_path):
@@ -13,7 +12,7 @@ def import_ova_with_cloudbuild(gcs_path):
     print the in-progress status and print the completed status."""
 
     # Authorize the client with Google defaults
-    credentials, project_id = google.auth.default()
+    _credentials, project_id = google.auth.default()
     client = cloudbuild_v1.services.cloud_build.CloudBuildClient()
 
     build = cloudbuild_v1.Build()
@@ -50,11 +49,9 @@ def main(event, context):
         """This Function was triggered by messageId {} published at {} to {}""".
         format(context.event_id, context.timestamp, context.resource["name"]))
 
-    print(event)
-    if 'data' in event:
-        print(base64.b64decode(event['data']).decode('utf-8'))
-        ova_file = "gs://elatov-demo-keys/ubuntu-20.04-server-cloudimg-amd64.ova"
+    # print(event)
+    if 'bucket' in event:
+        bucket_name = event["bucket"]
+        filename = event["name"]
+        ova_file = f"gs://{bucket_name}/{filename}"
         import_ova_with_cloudbuild(ova_file)
-        # import_ova_with_cloudbuild()
-    # else:
-    #     action = 'create'
