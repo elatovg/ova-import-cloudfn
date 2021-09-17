@@ -50,6 +50,7 @@ def main(event, context):
         """This Function was triggered by messageId {} published at {} to {}""".
         format(context.event_id, context.timestamp, context.resource["name"]))
 
+    print(event)
     if 'data' in event:
         print(base64.b64decode(event['data']).decode('utf-8'))
         ova_file = "gs://elatov-demo-keys/ubuntu-20.04-server-cloudimg-amd64.ova"
