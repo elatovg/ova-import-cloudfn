@@ -30,7 +30,7 @@ def import_ova_with_cloudbuild(gcs_path):
         "args": [
             f"-machine-image-name={image}", f"-ovf-gcs-path={gcs_path}",
             "-os=ubuntu-2004", "-client-id=api", "-timeout=7000s",
-            "-scopes=cloud-platform"
+            "-scopes=https://www.googleapis.com/auth/cloud-platform"
         ]
     }]
 
