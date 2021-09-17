@@ -2,9 +2,10 @@
 """
 Simple CloudFn to Import OVA as a machine image
 """
-from datetime import datetime
+from datetime import datetime,timedelta
 from google.cloud.devtools import cloudbuild_v1
 import google.auth
+from google.protobuf.duration_pb2 import Duration
 
 
 def import_ova_with_cloudbuild(gcs_path):
@@ -31,7 +32,8 @@ def import_ova_with_cloudbuild(gcs_path):
             f"-machine-image-name={image}", f"-ovf-gcs-path={gcs_path}",
             "-os=ubuntu-2004", "-client-id=api", "-timeout=7000s",
             "-scopes=https://www.googleapis.com/auth/cloud-platform"
-        ]
+        ],
+        "timeout": Duration(seconds=2400)
     }]
 
     operation = client.create_build(project_id=project_id, build=build)
