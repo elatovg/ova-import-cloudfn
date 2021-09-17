@@ -18,7 +18,7 @@ export CLOUD_SOURCE_REPO="github_elatovg_ova-import-cloudfn"
 export SRC_PATH="https://source.developers.google.com/projects/${PROJECT_ID}/repos/${CLOUD_SOURCE_REPO}/moveable-aliases/main/paths/app"
 export CLOUD_FN_NAME="build_ova"
 gcloud functions deploy ${CLOUD_FN_NAME} --runtime python39 \
-  --set-env-vars "PROJECT_ID=${PROJECT_ID} \
-  --trigger-bucket ${GCS_BUCKET} --entry-point main --region ${REGION} \ 
+  --set-env-vars "PROJECT_ID=${PROJECT_ID}" \
+  --trigger-bucket ${GCS_BUCKET} --entry-point main --region ${REGION} \
   --source ${SRC_PATH}
 ```

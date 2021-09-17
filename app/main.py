@@ -5,7 +5,6 @@ Simple CloudFn to Import OVA as a machine image
 import base64
 from google.cloud.devtools import cloudbuild_v1
 import google.auth
-import googleapiclient.discovery
 from datetime import datetime
 
 
