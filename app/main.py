@@ -29,7 +29,8 @@ def import_ova_with_cloudbuild(gcs_path):
             "gcr.io/compute-image-tools/gce_ovf_import:release",
         "args": [
             f"-machine-image-name={image}", f"-ovf-gcs-path={gcs_path}",
-            "-os=ubuntu-2004", "-client-id=api", "-timeout=7000s"
+            "-os=ubuntu-2004", "-client-id=api", "-timeout=7000s",
+            "-scopes=cloud-platform"
         ]
     }]
 
