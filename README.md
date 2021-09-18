@@ -56,7 +56,7 @@ gcloud functions deploy ${CLOUD_FN_NAME} --runtime python39 \
 After uploading an ova to your bucket:
 
 ```bash
-export GCS_BUCKET="YOUR_BUCKET"
+> export GCS_BUCKET="YOUR_BUCKET"
 > gsutil cp ubuntu-20.04-server-cloudimg-amd64.ova gs://${GCS_BUCKET}/
 
 Copying file://ubuntu-20.04-server-cloudimg-amd64.ova [Content-Type=application/octet-stream]...
@@ -76,7 +76,6 @@ fc52df79-c2b6-4733-86e4-d071b2aac4a4  2021-09-17T19:07:55+00:00  3M1S      -    
 After it's done, you can check out the logs:
 
 ```bash
-gcloud builds log $(gcloud builds list --limit 1 --format "value(id)")
 > gcloud builds log $(gcloud builds list --limit 1 --format "value(id)")
 ----------------------------- REMOTE BUILD OUTPUT ------------------------------
 starting build "fc52df79-c2b6-4733-86e4-d071b2aac4a4"
@@ -180,4 +179,7 @@ gcr.io/compute-image-tools/gce_ovf_import:release
 And also see the new image created:
 
 ```bash
+ > gcloud beta compute machine-images list
+NAME                        STATUS
+ubuntu-09-18-2021-14-22-01  READY
 ```
