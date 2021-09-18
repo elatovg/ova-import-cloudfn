@@ -20,8 +20,8 @@ def import_ova_with_cloudbuild(gcs_path):
 
     # Add date to image name
     now = datetime.now()
-    dt_string = now.strftime("%d-%m-%Y-%H-%M-%S")
-    image = f"Ubuntu_{dt_string}"
+    dt_string = now.strftime("%m-%d-%Y-%H-%M-%S")
+    image = f"Ubuntu-{dt_string}"
 
     # Create a build using the parameters from
     # https://cloud.google.com/compute/docs/machine-images/import-machine-from-virtual-appliance#api
