@@ -38,8 +38,6 @@ def import_ova_with_cloudbuild(gcs_path):
     }]
     build.timeout = Duration(seconds=2400)
     build.tags = [image]
-    print(image)
-    print(build.tags)
     operation = client.create_build(project_id=project_id, build=build)
     # Print the in-progress operation
     print("IN PROGRESS:")
