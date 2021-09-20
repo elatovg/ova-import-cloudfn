@@ -20,7 +20,7 @@ def import_ova_with_cloudbuild(gcs_path):
 
     # Add date to image name
     now = datetime.now()
-    dt_string = now.strftime("%m-%d-%Y-%H-%M-%S")
+    dt_string = now.strftime("%m_%d_%Y_%H_%M_%S")
     image = f"ubuntu-{dt_string}"
 
     # Create a build using the parameters from
@@ -37,7 +37,7 @@ def import_ova_with_cloudbuild(gcs_path):
         ],
     }]
     build.timeout = Duration(seconds=2400)
-    build.tags = image
+    build.tags = [image]
     print(image)
     print(build.tags)
     operation = client.create_build(project_id=project_id, build=build)
