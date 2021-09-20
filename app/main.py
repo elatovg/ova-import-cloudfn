@@ -27,9 +27,11 @@ def import_ova_with_cloudbuild(gcs_path):
     # https://cloud.google.com/compute/docs/machine-images/import-machine-from-virtual-appliance#api
     build.steps = [{
         "name":
-            "gcr.io/compute-image-tools/gce_ovf_import:release",
+            # "gcr.io/compute-image-tools/gce_ovf_import:release",
+            "gcr.io/compute-image-tools/gce_vm_image_import:release",
         "args": [
-            f"-machine-image-name={image}", f"-ovf-gcs-path={gcs_path}",
+            # f"-machine-image-name={image}", f"-ovf-gcs-path={gcs_path}",
+            f"-image_name={image}", f"-source_file={gcs_path}",
             "-os=ubuntu-2004", "-client-id=api", "-timeout=7000s",
             "-scopes=https://www.googleapis.com/auth/cloud-platform"
         ],
