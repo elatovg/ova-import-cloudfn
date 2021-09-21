@@ -20,7 +20,7 @@ def import_ova_with_cloudbuild(gcs_path):
 
     # Add date to image name
     now = datetime.now()
-    dt_string = now.strftime("%m_%d_%Y_%H_%M_%S")
+    dt_string = now.strftime("%m%d%Y%H%M%S")
     image = f"ubuntu-{dt_string}"
 
     # Create a build using the parameters from
